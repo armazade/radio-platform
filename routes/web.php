@@ -1,18 +1,42 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+
+use Domain\Admin\Controllers\EpisodeAdminController;
+use Domain\Episode\Controller\EpisodeController;
+use Domain\User\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
+Route::get('/laravelpage', function () {
+    return Inertia::render('LaravelPage', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/', function () {
+    return Inertia::render('Guest/Home', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::get('/', [EpisodeController::class, 'index'])->name('guest.index');
+Route::get('/episode/{episode}', [EpisodeController::class, 'show'])->name('guest.episode.show');
+
+Route::prefix('admin')
+    ->name('admin.')
+    // ->middleware(['auth']) // enable when you wire auth
+    ->group(function () {
+        Route::get('/episodes/create', [EpisodeAdminController::class, 'create'])->name('episodes.create');
+        Route::post('/episodes', [EpisodeAdminController::class, 'store'])->name('episodes.store');
+        Route::get('/episodes', [EpisodeAdminController::class, 'index'])->name('episodes.index');
+    });
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
