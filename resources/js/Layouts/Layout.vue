@@ -19,17 +19,14 @@ defineProps({
                 Radio
             </Link>
 
-
-            <nav>
-                <template v-if="canLogin">
-                    <template v-if="auth?.user">
-                        <Link href="/dashboard" class="text-sm text-gray-600 dark:text-gray-400">Dashboard</Link>
-                    </template>
-                    <template v-else>
-                        <Link href="/login" class="text-sm text-gray-600 dark:text-gray-400">Log in</Link>
-                        <Link v-if="canRegister" href="/register" class="ml-4 text-sm text-gray-600 dark:text-gray-400">Register</Link>
-                    </template>
-                </template>
+            <nav class="flex items-center gap-4">
+                <!-- MyRadio Button -->
+                <Link
+                    :href="auth?.user ? '/dashboard' : '/login'"
+                    class="px-4 py-2 text-lg font-bold text-white-100 dark:text-white-100"
+                >
+                    MyRadio
+                </Link>
             </nav>
         </header>
 
