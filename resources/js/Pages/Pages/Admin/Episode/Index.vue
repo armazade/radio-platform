@@ -1,5 +1,5 @@
 <template>
-    <Head title="Articles" />
+    <Head title="Episodes" />
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -8,22 +8,22 @@
                     <div v-if="$page.props.flash.success" class="mb-4 text-green-600">
                         {{ $page.props.flash.success }}
                     </div>
-                    <h1 class="text-2xl font-bold mb-4">Articles</h1>
+                    <h1 class="text-2xl font-bold mb-4">Episodes</h1>
 
                     <ul class="space-y-4">
                         <li
-                            v-for="article in articles"
-                            :key="article.id"
+                            v-for="episode in episodes"
+                            :key="episode.id"
                             class="p-4 border rounded shadow"
                         >
                             <Link
-                                :href="route('admin.articles.create', article.id)"
+                                :href="route('admin.episodes.create', episode.id)"
                                 class="block"
                             >
                                 <h2 >
-                                    {{ article.title }}
+                                    {{ episode.title }}
                                 </h2>
-                                <p class="text-gray-700">{{ article.description }}</p>
+                                <p class="text-gray-700">{{ episode.description }}</p>
                             </Link>
                         </li>
                     </ul>
@@ -37,6 +37,6 @@
 import { Head, Link } from '@inertiajs/vue3'
 
 defineProps({
-    articles: Array
+    episodes: Array
 });
 </script>

@@ -20,9 +20,9 @@ class EpisodeAdminController extends Controller
     }
 
     public function create()
-    {
-        return Inertia::render('Admin/Article/Create');
-    }
+        {
+        return Inertia::render('Admin/Episode/Create');
+        }
 
     public function store(EpisodeUpdateRequest $request)
     {

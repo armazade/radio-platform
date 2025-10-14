@@ -14,7 +14,7 @@ const form = useForm({
 })
 
 const submit = () => {
-    form.post(route('admin.articles.store'), {
+    form.post(route('admin.episodes.store'), {
         forceFormData: true,
     })
 }
@@ -22,11 +22,11 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Create Article" />
+        <Head title="Create Episode" />
 
         <form @submit.prevent="submit" class="max-w-xl mx-auto space-y-6 mt-10">
             <div>
-                <InputLabel for="title" value="Article Title" />
+                <InputLabel for="title" value="Episode Title" />
 
                 <TextInput
                     id="title"
@@ -69,7 +69,7 @@ const submit = () => {
             </div>
 
             <div>
-                <InputLabel for="image" value="Article Image"/>
+                <InputLabel for="image" value="Episode Image"/>
                 <input id="image" type="file" @change="e => form.image = e.target.files[0]"/>
                 <InputError :message="form.errors.image" class="mt-2"/>
             </div>
@@ -80,7 +80,7 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Create Article
+                    Create Episode
                 </PrimaryButton>
             </div>
         </form>
