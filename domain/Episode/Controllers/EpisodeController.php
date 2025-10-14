@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Episode\Controller;
+namespace Domain\Episode\Controllers;
 
 use App\Http\Controllers\Controller;
 use Domain\Episode\Models\Episode;

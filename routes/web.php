@@ -2,7 +2,7 @@
 
 
 use Domain\Admin\Controllers\EpisodeAdminController;
-use Domain\Episode\Controller\EpisodeController;
+use Domain\Episode\Controllers\EpisodeController;
 use Domain\User\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
