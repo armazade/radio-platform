@@ -22,7 +22,6 @@ class EpisodeController extends Controller
                 'genres' => array_map(function ($genre) {
                     return [
                         'value' => $genre->value,
-                        'color' => $genre->color(),
                     ];
                 }, $genres),
             ];
@@ -46,7 +45,6 @@ class EpisodeController extends Controller
                 'genres' => array_map(function ($genre) {
                     return [
                         'value' => $genre->value,
-                        'color' => $genre->color(),
                     ];
                 }, $genres),
             ],

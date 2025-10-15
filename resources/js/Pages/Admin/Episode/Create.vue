@@ -4,12 +4,14 @@ import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import TextInput from '@/Components/TextInput.vue'
+import GenreSelector from '@/Components/GenreSelector.vue'
 import {Head, useForm} from '@inertiajs/vue3'
 
 const form = useForm({
     title: '',
     description: '',
     date: '',
+    genres: [],
     image: null,
 })
 
@@ -66,6 +68,12 @@ const submit = () => {
                 />
 
                 <InputError class="mt-2" :message="form.errors.date" />
+            </div>
+
+            <div>
+                <InputLabel for="genres" value="Genres" />
+                <GenreSelector v-model="form.genres" />
+                <InputError class="mt-2" :message="form.errors.genres" />
             </div>
 
             <div>
