@@ -28,6 +28,11 @@ class EpisodeAdminController extends Controller
     {
         $validated = $request->validated();
 
+        // Ensure genres is an array
+        if (!is_array($validated['genres'])) {
+            $validated['genres'] = json_decode($validated['genres'], true) ?? [];
+        }
+
         $episode = Episode::create($validated);
 
         if ($request->hasFile('image')) {
@@ -49,17 +54,39 @@ class EpisodeAdminController extends Controller
         ]);
     }
 
+    public function edit(Episode $episode)
+    {
+        return Inertia::render('Admin/Episode/Edit', [
+            'episode' => [
+                'id' => $episode->id,
+                'title' => $episode->title,
+                'description' => $episode->description,
+                'date' => $episode->date,
+                'genres' => $episode->genres,
+                'image' => $episode->getFirstMediaUrl('images'),
+            ],
+        ]);
+    }
+
     public function update(EpisodeUpdateRequest $request, Episode $episode)
     {
         $validated = $request->validated();
 
-        $episode->update(attributes: $validated);
+        // Ensure genres is an array
+        if (!is_array($validated['genres'])) {
+            $validated['genres'] = json_decode($validated['genres'], true) ?? [];
+        }
+
+        $episode->update($validated);
 
         if ($request->hasFile('image')) {
             $episode->clearMediaCollection('images');
-            $episode->addMediaConversion('thumb')->toMediaCollection('images');
+            $episode->addMediaFromRequest('image')
+                ->toMediaCollection('images', 'public');
         }
 
-        return redirect()->route('admin.episodes.index')->with('success', 'Episode updated successfully.');
+        return redirect()
+            ->route('admin.episodes.index')
+            ->with('success', 'Episode updated successfully!');
     }
 }

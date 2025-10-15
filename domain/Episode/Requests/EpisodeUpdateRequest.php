@@ -21,6 +21,8 @@ class EpisodeUpdateRequest extends FormRequest
             'title'       => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'date'        => ['required', 'date'],
+            'genres'      => ['required', 'array'],
+            'genres.*'    => ['string', 'in:Ambient,Jungle,Techno,House,Drum & Bass,Breakbeat,Dubstep,Garage,Grime,Experimental,Jazz,Funk,Soul,Disco,Hip Hop'],
             'image'       => ['nullable', 'image', 'max:500000'],
         ];
     }
