@@ -36,6 +36,8 @@ Route::prefix('admin')
         Route::get('/episodes/create', [EpisodeAdminController::class, 'create'])->name('episodes.create');
         Route::post('/episodes', [EpisodeAdminController::class, 'store'])->name('episodes.store');
         Route::get('/episodes', [EpisodeAdminController::class, 'index'])->name('episodes.index');
+        Route::get('/episodes/{episode}/edit', [EpisodeAdminController::class, 'edit'])->name('episodes.edit');
+        Route::put('/episodes/{episode}', [EpisodeAdminController::class, 'update'])->name('episodes.update');
     });
 
 Route::get('/dashboard', function () {

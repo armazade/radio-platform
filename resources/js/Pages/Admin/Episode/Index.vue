@@ -17,7 +17,7 @@
                             class="p-4 border rounded shadow"
                         >
                             <Link
-                                :href="route('admin.episodes.create', episode.id)"
+                                :href="route('admin.episodes.edit', episode.id)"
                                 class="block"
                             >
                                 <h2 >

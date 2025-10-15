@@ -5,18 +5,26 @@ import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import TextInput from '@/Components/TextInput.vue'
 import GenreSelector from '@/Components/GenreSelector.vue'
-import {Head, useForm} from '@inertiajs/vue3'
+import { Head, useForm } from '@inertiajs/vue3'
+
+const props = defineProps({
+    episode: {
+        type: Object,
+        required: true,
+    },
+})
 
 const form = useForm({
-    title: '',
-    description: '',
-    date: '',
-    genres: [],
+    title: props.episode.title,
+    description: props.episode.description,
+    date: props.episode.date,
+    genres: props.episode.genres || [],
     image: null,
+    _method: 'PUT',
 })
 
 const submit = () => {
-    form.post(route('admin.episodes.store'), {
+    form.post(route('admin.episodes.update', props.episode.id), {
         forceFormData: true,
     })
 }
@@ -24,7 +32,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Create Episode" />
+        <Head title="Edit Episode" />
 
         <form @submit.prevent="submit" class="max-w-xl mx-auto space-y-6 mt-10">
             <div>
@@ -78,7 +86,12 @@ const submit = () => {
 
             <div>
                 <InputLabel for="image" value="Episode Image"/>
+                <div v-if="episode.image" class="mt-2 mb-4">
+                    <p class="text-sm text-gray-600">Current image:</p>
+                    <img :src="episode.image" alt="Current episode image" class="mt-1 max-w-xs rounded"/>
+                </div>
                 <input id="image" type="file" @change="e => form.image = e.target.files[0]"/>
+                <p class="text-sm text-gray-600 mt-1">Leave empty to keep the current image</p>
                 <InputError :message="form.errors.image" class="mt-2"/>
             </div>
 
@@ -88,7 +101,7 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Create Episode
+                    Update Episode
                 </PrimaryButton>
             </div>
         </form>
