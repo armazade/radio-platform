@@ -1,6 +1,6 @@
 <?php
 
-use Database\Factories;
+namespace Database\Factories;
 
 use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -12,6 +12,13 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
+
     /**
      * The current password being used by the factory.
      */
