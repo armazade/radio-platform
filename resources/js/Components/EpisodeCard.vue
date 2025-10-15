@@ -21,7 +21,7 @@ defineProps({
                     v-if="episode.imageUrl"
                     :src="episode.imageUrl"
                     alt="Episode Image"
-                    class="w-full h-40 object-cover mb-4"
+                    class="w-full h-80 object-cover mb-4"
                 />
 
                 <!-- Title -->
@@ -33,7 +33,7 @@ defineProps({
                         v-for="genre in episode.genres"
                         :key="genre.value"
                         :class="genre.color"
-                        class="px-2 py-1 rounded-full text-xs font-medium"
+                        class="px-2 py-1 rounded-full text-xs font-medium bg-purple-400 text-white hover:bg-purple-700 transition-colors"
                     >
                         {{ genre.value }}
                     </span>
