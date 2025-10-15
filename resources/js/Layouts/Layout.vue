@@ -23,7 +23,7 @@ defineProps({
                 <!-- MyRadio Button -->
                 <Link
                     :href="auth?.user ? '/dashboard' : '/login'"
-                    class="px-4 py-2 text-lg font-bold text-white-100 dark:text-white-100"
+                    class="px-4 py-2 text-lg font-bold text-indigo-700"
                 >
                     MyRadio
                 </Link>

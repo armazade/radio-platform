@@ -33,7 +33,7 @@ defineProps({
                         v-for="genre in episode.genres"
                         :key="genre.value"
                         :class="genre.color"
-                        class="px-2 py-1 rounded-full text-xs font-medium bg-purple-400 text-white hover:bg-purple-700 transition-colors"
+                        class="px-2 py-1 rounded-full text-xs font-medium bg-indigo-600 text-white hover:bg-black transition-colors"
                     >
                         {{ genre.value }}
                     </span>
