@@ -16,7 +16,7 @@ defineProps({
         <!-- Navbar -->
         <header class="p-4 flex justify-between items-center border-b dark:border-gray-700">
             <Link href="/" class="text-lg font-bold text-white-100 dark:text-white-100">
-                Radio
+                Radiocre
             </Link>
 
             <nav class="flex items-center gap-4">
@@ -25,7 +25,7 @@ defineProps({
                     :href="auth?.user ? '/dashboard' : '/login'"
                     class="px-4 py-2 text-lg font-bold text-indigo-700"
                 >
-                    MyRadio
+                    MyRadiocre
                 </Link>
             </nav>
         </header>
@@ -38,7 +38,7 @@ defineProps({
         <!-- Footer -->
         <footer class="p-4 text-center border-t dark:border-gray-700">
             <p class="text-sm text-gray-600 dark:text-gray-400">
-                Hard To Miss Us © {{ new Date().getFullYear() }} All rights reserved
+                Radiocre © {{ new Date().getFullYear() }} All rights reserved
             </p>
         </footer>
     </div>
