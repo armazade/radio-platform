@@ -12,10 +12,10 @@ defineProps({
 <template>
     <Head :title="title" />
 
-    <div class="flex flex-col min-h-screen bg-white">
+    <div class="flex flex-col min-h-screen bg-black">
         <!-- Navbar -->
         <header class="p-4 flex justify-between items-center border-b dark:border-gray-700">
-            <Link href="/" class="text-lg font-bold text-white-100 dark:text-white-100">
+            <Link href="/" class="text-lg font-bold text-white">
                 Radiocre
             </Link>
 
@@ -23,7 +23,7 @@ defineProps({
                 <!-- MyRadio Button -->
                 <Link
                     :href="auth?.user ? '/dashboard' : '/login'"
-                    class="px-4 py-2 text-lg font-bold text-indigo-700"
+                    class="px-4 py-2 text-lg font-bold text-white"
                 >
                     MyRadiocre
                 </Link>
