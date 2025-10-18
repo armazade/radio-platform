@@ -17,6 +17,7 @@ class Episode extends Model implements HasMedia
         'title',
         'description',
         'date',
+        'location',
         'genres',
     ];
 

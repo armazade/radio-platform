@@ -26,6 +26,7 @@ defineProps({
 
                 <!-- Title -->
                 <h3 class="text-lg font-semibold mb-2">{{ episode.title }}</h3>
+                <!-- Date and location-->
 
                 <!-- Genres -->
                 <div v-if="episode.genres && episode.genres.length > 0" class="flex flex-wrap gap-2 mb-3">
