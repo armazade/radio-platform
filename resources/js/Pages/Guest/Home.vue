@@ -14,7 +14,7 @@ defineProps({
     <Layout title="Home">
         <div class="py-2">
             <div class="w-full">
-                <h2 class="text-2xl font-bold mb-6">Latest Episodes</h2>
+                <h2 class="text-2xl font-bold text-white mb-6">Latest Episodes</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7">
                     <EpisodeCard
                         v-for="episode in episodes"
