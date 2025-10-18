@@ -18,6 +18,8 @@ class EpisodeController extends Controller
                 'id' => $episode->id,
                 'title' => $episode->title,
                 'description' => $episode->description,
+                'date' => $episode->date->format('d-m-Y'),
+                'location' => $episode->location,
                 'imageUrl' => $episode->getFirstMediaUrl('images'),
                 'genres' => array_map(function ($genre) {
                     return [
@@ -41,7 +43,8 @@ class EpisodeController extends Controller
                 'id' => $episode->id,
                 'title' => $episode->title,
                 'description' => $episode->description,
-                'date' => $episode->date,
+                'date' => $episode->date->format('d-m-Y'),
+                'location' => $episode->location,
                 'genres' => array_map(function ($genre) {
                     return [
                         'value' => $genre->value,
