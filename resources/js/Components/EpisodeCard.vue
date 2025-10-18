@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="bg-white overflow-hidden shadow hover:shadow-lg transition-shadow duration-200 h-96">
+    <div class="overflow-hidden shadow transition-shadow duration-200 h-96 border border-gray-500">
         <div class="p-4 flex flex-col h-full">
             <Link
                 :href="route('guest.episode.show', episode.id)"
@@ -21,20 +21,28 @@ defineProps({
                     v-if="episode.imageUrl"
                     :src="episode.imageUrl"
                     alt="Episode Image"
-                    class="w-full h-80 object-cover mb-4"
+                    class="w-full h-60 object-cover mb-4"
                 />
-
-                <!-- Title -->
-                <h3 class="text-lg font-semibold mb-2">{{ episode.title }}</h3>
                 <!-- Date and location-->
+                <div class="flex justify-between text-sm text-gray-500 mb-1">
+                    <div>{{ episode.date }}</div>
+                    <div>{{ episode.location }}</div>
+                </div>
+                <!-- Title -->
+                <h3 class="text-lg text-gray-200 font-semibold mb-2">{{ episode.title }}</h3>
 
+            </Link>
+            <Link
+                :href="route('guest.episode.show', episode.id)"
+                class="flex flex-col h-full"
+            >
                 <!-- Genres -->
                 <div v-if="episode.genres && episode.genres.length > 0" class="flex flex-wrap gap-2 mb-3">
                     <span
                         v-for="genre in episode.genres"
                         :key="genre.value"
                         :class="genre.color"
-                        class="px-2 py-1 rounded-full text-xs font-medium bg-indigo-600 text-white hover:bg-black transition-colors"
+                        class="px-2 py-1 rounded-full text-xs font-medium bg-indigo-800 text-white hover:bg-black transition-colors"
                     >
                         {{ genre.value }}
                     </span>
