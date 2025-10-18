@@ -57,6 +57,5 @@ class EpisodeSeeder extends Seeder
         ]);
         $episode6->setGenres([Genre::JAZZ, Genre::HOUSE]);
         $episode6->save();
-
     }
 }
