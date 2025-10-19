@@ -45,6 +45,8 @@ class EpisodeController extends Controller
                 'description' => $episode->description,
                 'date' => $episode->date->format('d-m-Y'),
                 'location' => $episode->location,
+                'audioUrl' => $episode->getAudioUrl(),
+                'hasAudio' => $episode->hasAudio(),
                 'genres' => array_map(function ($genre) {
                     return [
                         'value' => $genre->value,
