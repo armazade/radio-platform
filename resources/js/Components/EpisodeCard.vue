@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import EpisodeGenres from "@/Components/EpisodeGenres.vue";
 
 defineProps({
     episode: {
@@ -37,16 +38,7 @@ defineProps({
                 class="flex flex-col h-full"
             >
                 <!-- Genres -->
-                <div v-if="episode.genres && episode.genres.length > 0" class="flex flex-wrap gap-2 mb-3">
-                    <span
-                        v-for="genre in episode.genres"
-                        :key="genre.value"
-                        :class="genre.color"
-                        class="px-2 py-1 rounded-full text-xs font-medium bg-indigo-800 text-white hover:bg-black transition-colors"
-                    >
-                        {{ genre.value }}
-                    </span>
-                </div>
+                <EpisodeGenres :genres="genres ?? episode.genres" />
             </Link>
         </div>
     </div>
