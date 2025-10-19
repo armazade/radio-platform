@@ -25,7 +25,7 @@ defineProps({
                     :href="auth?.user ? '/dashboard' : '/login'"
                     class="px-4 py-2 text-lg font-bold text-white"
                 >
-                    MyRadiocre
+                    My Radiocre
                 </Link>
             </nav>
         </header>
