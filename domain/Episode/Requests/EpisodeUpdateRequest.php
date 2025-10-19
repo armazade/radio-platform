@@ -6,24 +6,30 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class EpisodeUpdateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        // Adjust if you want to restrict to certain users later
         return true;
     }
 
     public function rules(): array
     {
         return [
-            'title'       => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'date'        => ['required', 'date'],
-            'genres'      => ['required', 'array'],
-            'genres.*'    => ['string', 'in:Ambient,Jungle,Techno,House,Drum & Bass,Breakbeat,Dubstep,Garage,Grime,Experimental,Jazz,Funk,Soul,Disco,Hip Hop'],
-            'image'       => ['nullable', 'image', 'max:500000'],
+            'date' => ['required', 'date'],
+            'location' => ['required', 'string', 'max:255'],
+            'genres' => ['required', 'array'],
+            'genres.*' => ['string'],
+            'image'=> ['nullable', 'file', 'max:500000'],
+            'audio' => ['nullable', 'file', 'max:512000'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'audio.mimes' => 'The audio file must be an MP3, WAV, OGG, or M4A file.',
+            'audio.max' => 'The audio file must not be larger than 50MB.',
         ];
     }
 }
