@@ -11,7 +11,7 @@ class EpisodeSeeder extends Seeder
     public function run(): void
     {
         $episode1 = Episode::create([
-            'title' => 'Late Night Vibes',
+            'title' => 'Rene Matic',
             'description' => 'Smooth ambient and downtempo for late night listening.',
             'date' => now(),
         ]);
@@ -19,7 +19,7 @@ class EpisodeSeeder extends Seeder
         $episode1->save();
 
         $episode2 = Episode::create([
-            'title' => 'Jungle Fever',
+            'title' => 'Discostan',
             'description' => 'Fast-paced jungle and drum & bass session.',
             'date' => now()->subDays(1),
         ]);
@@ -27,9 +27,9 @@ class EpisodeSeeder extends Seeder
         $episode2->save();
 
         $episode3 = Episode::create([
-            'title' => 'Underground Techno',
+            'title' => 'Techy techno',
             'description' => 'Dark and hypnotic techno sounds.',
-            'date' => now()->subDays(2),
+            'date' => now()->subDays(1),
         ]);
         $episode3->setGenres([Genre::TECHNO, Genre::HOUSE]);
         $episode3->save();
