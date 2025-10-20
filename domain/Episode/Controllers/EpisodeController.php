@@ -23,6 +23,7 @@ class EpisodeController extends Controller
                 'imageUrl' => $episode->getFirstMediaUrl('images'),
                 'genres' => array_map(function ($genre) {
                     return [
+                        'name' => $genre->value,
                         'value' => $genre->value,
                     ];
                 }, $genres),
@@ -49,6 +50,7 @@ class EpisodeController extends Controller
                 'hasAudio' => $episode->hasAudio(),
                 'genres' => array_map(function ($genre) {
                     return [
+                        'name' => $genre->value,
                         'value' => $genre->value,
                     ];
                 }, $genres),
