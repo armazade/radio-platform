@@ -45,8 +45,6 @@ const submit = () => {
                     class="mt-1 block w-full"
                     v-model="form.title"
                     required
-                    autofocus
-                    autocomplete="off"
                 />
 
                 <InputError class="mt-2" :message="form.errors.title" />
