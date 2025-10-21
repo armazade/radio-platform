@@ -85,6 +85,8 @@ class EpisodeAdminController extends Controller
                 'description' => $episode->description,
                 'date' => $episode->date,
                 'location' => $episode->location,
+                'date' => $episode->date->format('d-m-Y'),
+                'location' => $episode->location,
                 'genres' => $episode->genres,
                 'image' => $episode->getFirstMediaUrl('images'),
                 'audio' => $episode->getAudioUrl(),
@@ -117,7 +119,7 @@ class EpisodeAdminController extends Controller
         }
 
         return redirect()
-            ->route('admin.episodes.index')
+            ->route('guest.index')
             ->with('success', 'Episode updated successfully!');
     }
 

@@ -32,6 +32,8 @@ enum Genre: string
     case CLASSICAL = 'Classical';
     case WORLD = 'World';
     case TALK = 'Talk';
+    case TRADITIONAL = 'Traditional';
+    case ORIENTAL = 'Oriental';
 
     /**
      * Get all genre values as an array
