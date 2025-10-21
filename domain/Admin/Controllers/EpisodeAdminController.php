@@ -73,7 +73,6 @@ class EpisodeAdminController extends Controller
     {
         $validated = $request->validated();
 
-        // Ensure genres is an array
         if (!is_array($validated['genres'])) {
             $validated['genres'] = json_decode($validated['genres'], true) ?? [];
         }
@@ -87,7 +86,7 @@ class EpisodeAdminController extends Controller
         }
 
         return redirect()
-            ->route('admin.episodes.index')
+            ->route('guest.index')
             ->with('success', 'Episode updated successfully!');
     }
 }
