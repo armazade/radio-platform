@@ -25,7 +25,7 @@ const submit = () => {
 
 <template>
     <AuthenticatedLayout>
-        <Head title="Edit Episode" />
+        <Head title="Create Episode" />
 
         <form @submit.prevent="submit" class="max-w-4xl mx-auto space-y-6 mt-10">
             <div>
