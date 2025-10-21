@@ -23,7 +23,22 @@ const genres = [
     'Funk',
     'Soul',
     'Disco',
-    'Hip Hop'
+    'Hip Hop',
+    'R&B',
+    'Afrobeat',
+    'Latin',
+    'Reggae',
+    'Dub',
+    'Electronic',
+    'IDM',
+    'Indie',
+    'Rock',
+    'Folk',
+    'Classical',
+    'World',
+    'Talk',
+    'Oriental',
+    'Traditional'
 ]
 
 const updateGenres = (genre) => {
