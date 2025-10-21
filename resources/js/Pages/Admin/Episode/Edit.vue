@@ -18,6 +18,7 @@ const form = useForm({
     title: props.episode.title,
     description: props.episode.description,
     date: props.episode.date,
+    location: props.episode.location,
     genres: props.episode.genres || [],
     image: null,
     _method: 'PUT',
@@ -54,12 +55,11 @@ const submit = () => {
             <div>
                 <InputLabel for="description" value="Description" />
 
-                <textarea
+                <TextInput
                     id="description"
                     v-model="form.description"
-                    class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                    rows="4"
-                ></textarea>
+                    class="mt-1 block w-full"
+                ></TextInput>
 
                 <InputError class="mt-2" :message="form.errors.description" />
             </div>
@@ -71,8 +71,8 @@ const submit = () => {
                     <TextInput
                         id="date"
                         type="date"
-                        class="mt-1 block w-full"
                         v-model="form.date"
+                        class="mt-1 block w-full"
                         required
                     />
 

@@ -61,7 +61,7 @@ class EpisodeAdminController extends Controller
                 'id' => $episode->id,
                 'title' => $episode->title,
                 'description' => $episode->description,
-                'date' => $episode->date,
+                'date' => $episode->date->format('d-m-Y'),
                 'location' => $episode->location,
                 'genres' => $episode->genres,
                 'image' => $episode->getFirstMediaUrl('images'),
