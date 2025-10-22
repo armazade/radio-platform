@@ -21,7 +21,7 @@ class EpisodeUpdateRequest extends FormRequest
             'genres' => ['required', 'array'],
             'genres.*' => ['string'],
             'image'=> ['nullable', 'file', 'max:500000'],
-            'audio' => ['nullable', 'file', 'max:512000'],
+            'audio' => ['nullable', 'file', 'mimes:mp3,wav,ogg,m4a', 'max:5120000'],
         ];
     }
 
@@ -29,7 +29,7 @@ class EpisodeUpdateRequest extends FormRequest
     {
         return [
             'audio.mimes' => 'The audio file must be an MP3, WAV, OGG, or M4A file.',
-            'audio.max' => 'The audio file must not be larger than 50MB.',
+            'audio.max' => 'The audio file must not be larger than 500MB.',
             'date'        => ['required', 'date'],
             'location'    => ['nullable', 'string', 'max:255'],
             'genres'      => ['required', 'array'],
