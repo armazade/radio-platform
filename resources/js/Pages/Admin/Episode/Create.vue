@@ -14,6 +14,7 @@ const form = useForm({
     location: '',
     genres: [],
     image: null,
+    audio: null,
 })
 
 const submit = () => {
@@ -96,8 +97,20 @@ const submit = () => {
 
                         <div>
                             <InputLabel for="image" value="Episode Image"/>
-                            <input id="image" type="file" @change="e => form.image = e.target.files[0]"/>
+                            <input id="image" type="file" accept="image/*" @change="e => form.image = e.target.files[0]"/>
                             <InputError :message="form.errors.image" class="mt-2"/>
+                        </div>
+
+                        <div>
+                            <InputLabel for="audio" value="Episode Audio"/>
+                            <input
+                                id="audio"
+                                type="file"
+                                accept="audio/*"
+                                @change="e => form.audio = e.target.files[0]"
+                                class="mt-1 block w-full"
+                            />
+                            <InputError :message="form.errors.audio" class="mt-2"/>
                         </div>
 
                         <div class="flex justify-end">

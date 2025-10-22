@@ -1,3 +1,4 @@
+
 <script setup>
 import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
@@ -21,6 +22,7 @@ const form = useForm({
     location: props.episode.location,
     genres: props.episode.genres || [],
     image: null,
+    audio: null,
     _method: 'PUT',
 })
 
@@ -116,6 +118,22 @@ const submit = () => {
                             />
                             <p class="text-sm text-neutral-200 mt-1">Leave empty to keep current image</p>
                             <InputError :message="form.errors.image" class="mt-2"/>
+                        </div>
+
+                        <div>
+                            <InputLabel for="audio" value="Episode Audio"/>
+                            <div v-if="episode.audioMetadata" class="mt-2 mb-4">
+                                <p class="text-sm text-neutral-200">Current audio: {{ episode.audioMetadata.name }}</p>
+                            </div>
+                            <input
+                                id="audio"
+                                type="file"
+                                accept="audio/*"
+                                @change="e => form.audio = e.target.files[0]"
+                                class="mt-1 block w-full"
+                            />
+                            <p class="text-sm text-neutral-200 mt-1">Leave empty to keep current audio</p>
+                            <InputError :message="form.errors.audio" class="mt-2"/>
                         </div>
 
                         <div class="flex justify-end">

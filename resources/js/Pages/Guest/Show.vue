@@ -27,6 +27,12 @@
                 <!-- pass genres (fallback to episode.genres if `genres` prop is not provided) -->
                 <EpisodeGenres :genres="genres ?? episode.genres" />
             </div>
+            <div v-if="episode.audioUrl" class="mb-6 mt-20">
+                <audio controls class="w-full">
+                    <source :src="episode.audioUrl" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
         </div>
     </Layout>
 </template>
