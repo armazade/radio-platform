@@ -14,7 +14,7 @@ defineProps({
 
     <div class="flex flex-col min-h-screen bg-black">
         <!-- Navbar -->
-        <header class="p-4 flex justify-between items-center border-b dark:border-gray-700">
+        <header class="p-4 flex justify-between items-center border-b dark:border-gray-500">
             <Link href="/" class="text-lg font-bold text-white">
                 Radiocre
             </Link>
@@ -36,7 +36,7 @@ defineProps({
         </main>
 
         <!-- Footer -->
-        <footer class="p-4 text-center border-t dark:border-gray-700">
+        <footer class="p-4 text-center border-t dark:border-gray-500">
             <p class="text-sm text-gray-600 dark:text-gray-400">
                 Radiocre © {{ new Date().getFullYear() }} All rights reserved
             </p>

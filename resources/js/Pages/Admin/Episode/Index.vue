@@ -3,8 +3,8 @@
     <AuthenticatedLayout>
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">
+                <div class="overflow-hidden bg-neutral-800 shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-neutral-200">
                         <div v-if="$page.props.flash.success" class="mb-4 text-green-600">
                             {{ $page.props.flash.success }}
                         </div>
@@ -14,7 +14,7 @@
                             <li
                                 v-for="episode in episodes"
                                 :key="episode.id"
-                                class="p-4 border rounded shadow"
+                                class="p-6 border rounded shadow bg-neutral-700"
                             >
                                 <Link
                                     :href="route('admin.episodes.edit', episode.id)"
@@ -23,7 +23,7 @@
                                     <h2 >
                                         {{ episode.title }}
                                     </h2>
-                                    <p class="text-gray-700">{{ episode.description }}</p>
+                                    <p class="text-neutral-200">{{ episode.description }}</p>
                                 </Link>
                             </li>
                         </ul>

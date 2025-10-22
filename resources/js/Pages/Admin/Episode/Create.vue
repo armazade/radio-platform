@@ -26,87 +26,92 @@ const submit = () => {
 <template>
     <AuthenticatedLayout>
         <Head title="Create Episode" />
+        <div class="py-12">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="overflow-hidden bg-neutral-800 shadow-sm sm:rounded-lg">
+                    <form @submit.prevent="submit" class="max-w-4xl mx-auto space-y-6 mt-10">
+                        <div>
+                            <InputLabel for="title" value="Episode Title" />
 
-        <form @submit.prevent="submit" class="max-w-4xl mx-auto space-y-6 mt-10">
-            <div>
-                <InputLabel for="title" value="Episode Title" />
+                            <TextInput
+                                id="title"
+                                type="text"
+                                class="mt-1 block w-full"
+                                v-model="form.title"
+                                required
+                                autofocus
+                                autocomplete="off"
+                            />
 
-                <TextInput
-                    id="title"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.title"
-                    required
-                    autofocus
-                    autocomplete="off"
-                />
+                            <InputError class="mt-2" :message="form.errors.title" />
+                        </div>
 
-                <InputError class="mt-2" :message="form.errors.title" />
-            </div>
+                        <div>
+                            <InputLabel for="description" value="Description" />
 
-            <div>
-                <InputLabel for="description" value="Description" />
+                            <TextInput
+                                id="description"
+                                v-model="form.description"
+                                class="mt-1 block w-full"
+                            ></TextInput>
 
-                <TextInput
-                    id="description"
-                    v-model="form.description"
-                    class="mt-1 block w-full"
-                ></TextInput>
+                            <InputError class="mt-2" :message="form.errors.description" />
+                        </div>
 
-                <InputError class="mt-2" :message="form.errors.description" />
-            </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <InputLabel for="date" value="Date" />
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <InputLabel for="date" value="Date" />
+                                <TextInput
+                                    id="date"
+                                    type="date"
+                                    v-model="form.date"
+                                    class="mt-1 block w-full"
+                                    required
+                                />
 
-                    <TextInput
-                        id="date"
-                        type="date"
-                        v-model="form.date"
-                        class="mt-1 block w-full"
-                        required
-                    />
+                                <InputError class="mt-2" :message="form.errors.date" />
+                            </div>
 
-                    <InputError class="mt-2" :message="form.errors.date" />
+                            <div>
+                                <InputLabel for="location" value="Location" />
+
+                                <TextInput
+                                    id="location"
+                                    type="text"
+                                    class="mt-1 block w-full"
+                                    v-model="form.location"
+                                    required
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.location" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <InputLabel for="genres" value="Genres" />
+                            <GenreSelector v-model="form.genres" />
+                            <InputError class="mt-2" :message="form.errors.genres" />
+                        </div>
+
+                        <div>
+                            <InputLabel for="image" value="Episode Image"/>
+                            <input id="image" type="file" @change="e => form.image = e.target.files[0]"/>
+                            <InputError :message="form.errors.image" class="mt-2"/>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <PrimaryButton
+                                class="ml-4 mb-5"
+                                :class="{ 'opacity-25': form.processing }"
+                                :disabled="form.processing"
+                            >
+                                Create Episode
+                            </PrimaryButton>
+                        </div>
+                    </form>
                 </div>
-
-                <div>
-                    <InputLabel for="location" value="Location" />
-
-                    <TextInput
-                        id="location"
-                        type="text"
-                        class="mt-1 block w-full"
-                        v-model="form.location"
-                        required
-                    />
-
-                    <InputError class="mt-2" :message="form.errors.location" />
-                </div>
             </div>
-
-            <div>
-                <InputLabel for="genres" value="Genres" />
-                <GenreSelector v-model="form.genres" />
-                <InputError class="mt-2" :message="form.errors.genres" />
-            </div>
-
-            <div>
-                <InputLabel for="image" value="Episode Image"/>
-                <input id="image" type="file" @change="e => form.image = e.target.files[0]"/>
-                <InputError :message="form.errors.image" class="mt-2"/>
-            </div>
-
-            <div class="flex justify-end">
-                <PrimaryButton
-                    class="ml-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Create Episode
-                </PrimaryButton>
-            </div>
-        </form>
+        </div>
     </AuthenticatedLayout>
 </template>
