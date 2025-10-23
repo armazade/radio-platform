@@ -11,24 +11,35 @@ class EpisodeAdminController extends Controller
 {
     public function index()
     {
-        $episodes = Episode::all();
+        $episodes = Episode::all()->map(function ($episode) {
+            return [
+                'id' => $episode->id,
+                'title' => $episode->title,
+                'description' => $episode->description,
+                'date' => $episode->date->format('d-m-Y'),
+                'location' => $episode->location,
+                'imageUrl' => $episode->getFirstMediaUrl('images'),
+                'hasAudio' => $episode->hasAudio(),
+            ];
+        });
+
         return Inertia::render('Admin/Episode/Index', [
             'episodes' => $episodes,
             'flash' => [
-                'success' => session('success'),]
+                'success' => session('success'),
+            ]
         ]);
     }
 
     public function create()
-        {
+    {
         return Inertia::render('Admin/Episode/Create');
-        }
+    }
 
     public function store(EpisodeUpdateRequest $request)
     {
         $validated = $request->validated();
 
-        // Ensure genres is an array
         if (!is_array($validated['genres'])) {
             $validated['genres'] = json_decode($validated['genres'], true) ?? [];
         }
@@ -41,6 +52,12 @@ class EpisodeAdminController extends Controller
                 ->toMediaCollection('images', 'public');
         }
 
+        if ($request->hasFile('audio')) {
+            $episode
+                ->addMediaFromRequest('audio')
+                ->toMediaCollection('audio', 'public');
+        }
+
         return redirect()
             ->route('admin.episodes.index')
             ->with('success', 'Episode created!');
@@ -51,6 +68,8 @@ class EpisodeAdminController extends Controller
         return Inertia::render('Admin/Episode/Show', [
             'episode' => $episode,
             'imageUrl' => $episode->getFirstMediaUrl('images'),
+            'audioUrl' => $episode->getAudioUrl(),
+            'audioMetadata' => $episode->getAudioMetadata(),
         ]);
     }
 
@@ -65,6 +84,8 @@ class EpisodeAdminController extends Controller
                 'location' => $episode->location,
                 'genres' => $episode->genres,
                 'image' => $episode->getFirstMediaUrl('images'),
+                'audio' => $episode->getAudioUrl(),
+                'audioMetadata' => $episode->getAudioMetadata(),
             ],
         ]);
     }
@@ -85,8 +106,23 @@ class EpisodeAdminController extends Controller
                 ->toMediaCollection('images', 'public');
         }
 
+        if ($request->hasFile('audio')) {
+            $episode->clearMediaCollection('audio');
+            $episode->addMediaFromRequest('audio')
+                ->toMediaCollection('audio', 'public');
+        }
+
         return redirect()
             ->route('guest.index')
             ->with('success', 'Episode updated successfully!');
+    }
+
+    public function destroy(Episode $episode)
+    {
+        $episode->delete();
+
+        return redirect()
+            ->route('admin.episodes.index')
+            ->with('success', 'Episode deleted successfully!');
     }
 }

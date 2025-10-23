@@ -3,7 +3,6 @@
 namespace Domain\Episode\Controllers;
 
 use App\Http\Controllers\Controller;
-use Domain\Episode\Enums\Genre;
 use Domain\Episode\Models\Episode;
 use Inertia\Inertia;
 
@@ -46,6 +45,8 @@ class EpisodeController extends Controller
                 'description' => $episode->description,
                 'date' => $episode->date->format('d-m-Y'),
                 'location' => $episode->location,
+                'audioUrl' => $episode->getFirstMediaUrl('audio'),
+                'hasAudio' => $episode->hasAudio(),
                 'genres' => array_map(function ($genre) {
                     return [
                         'name' => $genre->value,

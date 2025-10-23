@@ -1,5 +1,5 @@
 <template>
-    <Layout title="Home">
+    <Layout title="Episode Details">
         <Head :title="episode.title" />
 
         <section
@@ -13,7 +13,7 @@
             <div class="text-gray-400">No image available</div>
         </section>
 
-        <div class="-mt-24 sm:-mt-32 px-4">
+        <div class="-mt-24 sm:-mt-32 px-4 pb-32">
             <div class="max-w-4xl bg-white text-black shadow-lg p-8 ml-6 sm:ml-8 lg:ml-12">
                 <h1 class="text-3xl sm:text-4xl font-extrabold mb-4">{{ episode.title }}</h1>
 
@@ -28,13 +28,23 @@
                 <EpisodeGenres :genres="genres ?? episode.genres" />
             </div>
         </div>
+
+        <!-- Sticky Bottom Audio Player -->
+        <AudioPlayer
+            v-if="episode.audioUrl"
+            :audio-url="episode.audioUrl"
+            :title="episode.title"
+            :image-url="imageUrl"
+            :date="episode.date"
+        />
     </Layout>
 </template>
 
 <script setup>
-import {Head} from '@inertiajs/vue3'
-import Layout from "@/Layouts/Layout.vue";
-import EpisodeGenres from "@/Components/EpisodeGenres.vue";
+import { Head } from '@inertiajs/vue3'
+import Layout from "@/Layouts/Layout.vue"
+import EpisodeGenres from "@/Components/EpisodeGenres.vue"
+import AudioPlayer from "@/Components/AudioPlayer.vue"
 
 defineProps({
     episode: Object,
