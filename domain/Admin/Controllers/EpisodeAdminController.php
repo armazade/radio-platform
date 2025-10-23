@@ -40,21 +40,18 @@ class EpisodeAdminController extends Controller
     {
         $validated = $request->validated();
 
-        // Ensure genres is an array
         if (!is_array($validated['genres'])) {
             $validated['genres'] = json_decode($validated['genres'], true) ?? [];
         }
 
         $episode = Episode::create($validated);
 
-        // Handle image upload
         if ($request->hasFile('image')) {
             $episode
                 ->addMediaFromRequest('image')
                 ->toMediaCollection('images', 'public');
         }
 
-        // Handle audio upload
         if ($request->hasFile('audio')) {
             $episode
                 ->addMediaFromRequest('audio')
@@ -109,7 +106,6 @@ class EpisodeAdminController extends Controller
                 ->toMediaCollection('images', 'public');
         }
 
-        // ✅ Add audio handling
         if ($request->hasFile('audio')) {
             $episode->clearMediaCollection('audio');
             $episode->addMediaFromRequest('audio')
