@@ -1,17 +1,20 @@
 <template>
     <div v-if="genres && genres.length" class="flex flex-wrap gap-2">
-        <span
+        <Link
             v-for="(g, index) in genres"
             :key="g.id || g.value || g.name || g || index"
-            class="px-2 py-1 rounded-full text-xs font-medium bg-indigo-800 text-white hover:bg-black transition-colors"
+            :href="route('guest.episodes.genre', { genre: getGenreName(g) })"
+            class="px-2 py-1 rounded-full text-xs font-medium bg-indigo-800 text-white hover:bg-black transition-colors cursor-pointer"
+            @click.stop
         >
             {{ getGenreName(g) }}
-        </span>
+        </Link>
     </div>
 </template>
 
 <script setup>
 import { toRefs } from 'vue'
+import { Link } from '@inertiajs/vue3'
 
 const props = defineProps({
     genres: {

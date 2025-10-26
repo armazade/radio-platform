@@ -17,16 +17,8 @@ Route::get('/laravelpage', function () {
     ]);
 });
 
-Route::get('/', function () {
-    return Inertia::render('Guest/Home', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
 Route::get('/', [EpisodeController::class, 'index'])->name('guest.index');
+Route::get('/episodes/tags/{genre}', [EpisodeController::class, 'index'])->name('guest.episodes.genre');
 Route::get('/episode/{episode}', [EpisodeController::class, 'show'])->name('guest.episode.show');
 
 Route::prefix('admin')
