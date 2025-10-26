@@ -38,7 +38,7 @@ class EpisodeController extends Controller
     {
         $genres = $episode->getGenreEnums();
 
-        return Inertia::render('Guest/Show', [
+        return Inertia::render('Guest/Episode/Show', [
             'episode' => [
                 'id' => $episode->id,
                 'title' => $episode->title,
